@@ -48,7 +48,7 @@ class InputHandler extends InputAdapter {
 			imgX += 5;
 		}
 
-		if (keyCode == Keys. SHIFT_LEFT || keyCode == Keys.SHIFT_RIGHT) {
+		if (keyCode == Keys.SHIFT_LEFT || keyCode == Keys.SHIFT_RIGHT) {
 			shiftHeld = true;
 		}
 
@@ -57,7 +57,7 @@ class InputHandler extends InputAdapter {
 
 	@Override
 	public boolean keyUp(int keyCode) {
-		if (keyCode == Keys. SHIFT_LEFT || keyCode == Keys.SHIFT_RIGHT) {
+		if (keyCode == Keys.SHIFT_LEFT || keyCode == Keys.SHIFT_RIGHT) {
 			shiftHeld = false;
 		}
 		return true;
@@ -74,13 +74,11 @@ class InputHandler extends InputAdapter {
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
 		if (shiftHeld) {
-
 			double theta = Math.atan2(screenY - startMouse.y, startMouse.x - screenX);
 			cam.rotate((float) theta);
-			updateCam();
-
+            updateCam();
+            
 		} else {
-
 			if (screenX < 641 && screenX >-1 && screenY < 480 && screenY > -1) {
 				System.out.println(screenX);
 				float diffX = screenX - startMouse.x;

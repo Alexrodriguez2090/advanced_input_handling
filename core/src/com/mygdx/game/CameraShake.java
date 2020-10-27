@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 class CameraShake extends CameraEffect {
-	private int baseIntensity;
+	private float baseIntensity;
     private float intensity;
 	private int speed;
 	private String direction;
@@ -24,7 +24,7 @@ class CameraShake extends CameraEffect {
     public float getIntensity() {
         return intensity;
     }
-    public void setIntensity(int intensity) {
+    public void setIntensity(float intensity) {
         if (intensity < 0) {
             this.intensity = 0;
         } else {
@@ -54,7 +54,7 @@ class CameraShake extends CameraEffect {
 	}
 	
     public CameraShake(OrthographicCamera cam, int duration, SpriteBatch batch,
-    ShapeRenderer renderer, int intensity, int speed, String direction) {
+    ShapeRenderer renderer, float intensity, int speed, String direction) {
         super(cam,duration,batch,renderer);
         setIntensity(intensity);
 		setSpeed(speed);
@@ -65,7 +65,7 @@ class CameraShake extends CameraEffect {
     public void play() {
         if (isActive()) {
             if (progress % speed == 0) {
-                intensity = -intensity/2;
+                intensity = (float) (-intensity / 1.1);
                 
                 if (this.direction.equalsIgnoreCase("h")) {
                     cam.translate(intensity,0);
